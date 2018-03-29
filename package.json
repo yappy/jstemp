@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/yappy/jstemp/issues"
   },
-  "homepage": "https://github.com/yappy/jstemp#readme",
-  "devDependencies": {
-    "babel-cli": "^6.26.0"
-  }
+  "homepage": "https://github.com/yappy/jstemp#readme"
 }
