@@ -1,0 +1,19 @@
+{
+  "name": "template",
+  "version": "1.0.0",
+  "description": "JavaScript template project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://yappy@github.com/yappy/jstemp.git"
+  },
+  "author": "yappy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yappy/jstemp/issues"
+  },
+  "homepage": "https://github.com/yappy/jstemp#readme"
+}
