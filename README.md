@@ -13,5 +13,5 @@ For Linux (WSL) package manager
 
 ## How to be created
 1. `npm init`
-1. `npm install --save-dev babel-cli`
+1. `npm install --save-dev @babel/cli`
 1. `npm install --save-dev @babel/preset-env`
