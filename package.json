@@ -1,24 +1,13 @@
 {
-  "name": "template",
+  "name": "jstemp",
   "version": "1.0.0",
-  "description": "JavaScript template project",
+  "description": "JavaScript project template",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://yappy@github.com/yappy/jstemp.git"
-  },
+  "repository": "https://github.com/yappy/jstemp.git",
   "author": "yappy",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/yappy/jstemp/issues"
-  },
-  "homepage": "https://github.com/yappy/jstemp#readme",
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.42",
-    "@babel/core": "^7.0.0-beta.42",
-    "@babel/preset-env": "^7.0.0-beta.42"
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
   }
 }
