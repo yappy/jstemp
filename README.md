@@ -2,17 +2,19 @@
 
 ## Requirements
 
-### npm (node.js)
+### yarn
 For Linux (WSL) package manager
-* en: https://nodejs.org/en/download/package-manager/
-* ja: https://nodejs.org/ja/download/package-manager/
-* `npm -v`
+* en: https://yarnpkg.com/lang/en/docs/install/
+* ja: https://yarnpkg.com/lang/ja/docs/install/
+* `yarn -v`
 
 ## How to use
-1. `npm install`
+1. `yarn`
+1. `make` (`make clean` to clean)
 
 ## How to be created
-1. `npm init`
-1. `npm install --save-dev @babel/core`
-1. `npm install --save-dev @babel/cli`
-1. `npm install --save-dev @babel/preset-env`
+1. `yarn init`
+1. `yarn add --dev babel-cli`
+1. `yarn add --dev babel-preset-env`
+1. `yarn add --dev webpack`
+1. `yarn add --dev webpack-cli`
