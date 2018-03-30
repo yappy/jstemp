@@ -7,13 +7,13 @@ OUT_DIR := build
 DIST_DIR := dist
 
 JS := js
+JS_TARGET := bundle.js
 JS_SRCDIR := $(SRC_DIR)/$(JS)
 JS_OUTDIR := $(OUT_DIR)/$(JS)
 JS_SRCS := $(shell find $(JS_SRCDIR) -type f)
 JS_OBJS := $(JS_SRCS:$(JS_SRCDIR)/%.js=$(JS_OUTDIR)/%.js)
-JS_ENTRY := $(JS_OUTDIR)/index.js
-JS_BUNDLE := $(JS_OUTDIR)/bundle.js
-JS_DIST := $(DIST_DIR)/bundle.js
+JS_BUNDLE := $(JS_OUTDIR)/$(JS_TARGET)
+JS_DIST := $(DIST_DIR)/$(JS_TARGET)
 
 OTHER := web
 OTHER_SRCDIR := $(SRC_DIR)/$(OTHER)
