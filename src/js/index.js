@@ -1,4 +1,4 @@
-import { assert } from "util";
+import { assert } from "./util/util";
 
 assert(true);
 
@@ -10,3 +10,6 @@ class MyClass {
     console.log(this.message);
   }
 }
+
+new MyClass().say();
+assert(false);
