@@ -18,3 +18,7 @@ For Linux (WSL) package manager
 1. `yarn add --dev babel-preset-env`
 1. `yarn add --dev webpack`
 1. `yarn add --dev webpack-cli`
+
+## Watch and auto-build
+1. `sudo apt install inotify-tools`
+1. `./watch.sh`
