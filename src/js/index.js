@@ -5,6 +5,6 @@ util.assert(true);
 
 window.onload = () => {
   const canvas = document.getElementById("gamemain");
-  const app = new game.GameApplication(canvas, 30);
+  const app = new game.GameApplication(canvas, 60);
   app.run();
 }

@@ -9,7 +9,8 @@ export class GameApplication {
     this.baseTime_ = new Date().getTime();
     this.printFps_ = 0.0;
   }
-  frame() {
+
+  update() {
     this.frameCount_++;
     if (this.frameCount_ >= this.fps_) {
       const now = new Date().getTime();
@@ -18,6 +19,7 @@ export class GameApplication {
       this.frameCount_ = 0;
     }
   }
+
   render() {
     const ctx = this.context_;
     ctx.fillStyle = "#0000FF";
@@ -26,12 +28,18 @@ export class GameApplication {
       console.log(this.printFps_);
     }
   }
-  run() {
-    const start = new Date().getTime();
-    this.frame();
+
+  frame_(startMs) {
+    this.update();
     this.render();
     const now = new Date().getTime();
-    const timeout = Math.max(0, this.frameMs_ - (now - start));
-    window.setTimeout(() => this.run(), timeout);
+    const nextStart = Math.max(startMs + this.frameMs_, now);
+    const timeout = nextStart - now;
+    window.setTimeout(() => this.frame_(nextStart), timeout);
+  }
+
+  run() {
+    const start = new Date().getTime();
+    this.frame_(start);
   }
 }
