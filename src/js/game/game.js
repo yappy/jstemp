@@ -23,15 +23,24 @@ export class GameApplication {
 
   update() {}
 
-  render(ctx) {
+  render(ctx) {}
+
+  renderClear(fillStyle) {
+    const ctx = this.context;
     const w = this.canvas.width;
     const h = this.canvas.height;
 
-    ctx.fillStyle = "#0000FF";
+    ctx.fillStyle = fillStyle ? fillStyle : "#000000";
     ctx.fillRect(0, 0, w, h);
+  }
 
-    ctx.fillStyle = "#FFFFFF";
-    ctx.font = "10px serif";
+  renderFps(fillStyle, font) {
+    const ctx = this.context;
+    const w = this.canvas.width;
+    const h = this.canvas.height;
+
+    ctx.fillStyle = fillStyle ? fillStyle : "#FFFFFF";
+    ctx.font = font ? font : "10px serif";
     ctx.fillText(this.printFps, w - 30, h - 10);
   }
 
