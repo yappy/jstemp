@@ -6,26 +6,24 @@ export class GameApplication {
     this.context = canvas.getContext("2d");
     this.fps_ = fps;
     this.frameMs_ = 1000 / fps;
-    this.res = new ResourceManager(imgList, audioList);
+    this.res_ = new ResourceManager(imgList, audioList);
 
+    this.printFps = "0.0";
     this.frameCount_ = 0;
     this.baseTime_ = new Date().getTime();
-    this.printFps_ = "0.0";
   }
 
-  update() {
-    this.frameCount_++;
-    if (this.frameCount_ >= this.fps_) {
-      const now = new Date().getTime();
-      const fps = this.frameCount_ / (now - this.baseTime_) * 1000.0;
-      this.printFps_ = fps.toFixed(1);
-      this.baseTime_ = now;
-      this.frameCount_ = 0;
-    }
+  getImage(key) {
+    return this.res_.getImage(key);
   }
 
-  render() {
-    const ctx = this.context;
+  getAudio(key) {
+    return this.res_.getAudio(key);
+  }
+
+  update() {}
+
+  render(ctx) {
     const w = this.canvas.width;
     const h = this.canvas.height;
 
@@ -34,12 +32,28 @@ export class GameApplication {
 
     ctx.fillStyle = "#FFFFFF";
     ctx.font = "10px serif";
-    ctx.fillText(this.printFps_, w - 30, h - 10);
+    ctx.fillText(this.printFps, w - 30, h - 10);
+  }
+
+  updateInternal_() {
+    this.frameCount_++;
+    if (this.frameCount_ >= this.fps_) {
+      const now = new Date().getTime();
+      const fps = this.frameCount_ / (now - this.baseTime_) * 1000.0;
+      this.printFps = fps.toFixed(1);
+      this.baseTime_ = now;
+      this.frameCount_ = 0;
+    }
+    this.update();
+  }
+
+  renderInternal_() {
+    this.render(this.context);
   }
 
   frame_(startMs) {
-    this.update();
-    this.render();
+    this.updateInternal_();
+    this.renderInternal_();
     const now = new Date().getTime();
     const nextStart = Math.max(startMs + this.frameMs_, now);
     const timeout = nextStart - now;
@@ -47,7 +61,7 @@ export class GameApplication {
   }
 
   run() {
-    this.res.load(() => {
+    this.res_.load(() => {
       const start = new Date().getTime();
       this.frame_(start);
     });
@@ -104,11 +118,11 @@ class ResourceManager {
     }
   }
 
-  getImage() {
-
+  getImage(key) {
+    return this.img_[key];
   }
 
-  getAudio() {
-
+  getAudio(key) {
+    return this.audio_[key];
   }
 }
