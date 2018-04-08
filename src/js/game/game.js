@@ -116,22 +116,22 @@ class ResourceManager {
     for (const key in this.img_) {
       const entry = this.img_[key];
       // Set EventListener before setting src
-      entry.image.addEventListener("load", onLoad);
+      entry.image.addEventListener("load", onLoad, false);
       entry.image.addEventListener("load", () => {
         console.log("Load image: " + entry.src);
-      });
+      }, false);
       entry.image.addEventListener("error", () => {
         console.log("Load error image: " + entry.src);
-      });
+      }, false);
       entry.image.src = entry.src;
     }
   }
 
   getImage(key) {
-    return this.img_[key];
+    return this.img_[key].image;
   }
 
   getAudio(key) {
-    return this.audio_[key];
+    return this.audio_[key].audio;
   }
 }

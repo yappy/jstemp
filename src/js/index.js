@@ -22,6 +22,8 @@ class MyGame extends game.GameApplication {
     super.render(ctx);
     this.renderClear();
     this.renderFps();
+
+    ctx.drawImage(this.getImage("img1"), 100, 100, 100, 100);
   }
 }
 
