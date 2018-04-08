@@ -1,9 +1,12 @@
+import * as util from "../util/util";
+
 export class GameApplication {
-  constructor(canvas, fps) {
+  constructor(canvas, fps, imgList, audioList) {
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
     this.fps_ = fps;
     this.frameMs_ = 1000 / fps;
+    this.res = new ResourceManager(imgList, audioList);
 
     this.frameCount_ = 0;
     this.baseTime_ = new Date().getTime();
@@ -44,7 +47,68 @@ export class GameApplication {
   }
 
   run() {
-    const start = new Date().getTime();
-    this.frame_(start);
+    this.res.load(() => {
+      const start = new Date().getTime();
+      this.frame_(start);
+    });
+  }
+}
+
+class ResourceManager {
+  constructor(imgList, audioList) {
+    this.img_ = {};
+    this.imgCount_ = 0;
+    for (const key in imgList) {
+      this.img_ [key] = {
+        image:  new Image(),
+        src:    imgList[key],
+      };
+      this.imgCount_++;
+    }
+
+    this.audio_ = {};
+    this.audioCount_ = 0;
+    for (const key in audioList) {
+      this.audio_[key] = {
+        audio:  new Audio(),
+        src:    audioList[key],
+      };
+      this.audioCount_++;
+    }
+  }
+
+  load(then) {
+    let loaded = 0;
+    const loadNum = this.imgCount_ + this.audioCount_;
+    const onLoad = () => {
+      loaded++;
+      util.assert(loaded <= loadNum);
+      console.log(loaded + "/" + loadNum);
+      if (loaded >= loadNum) {
+        console.log("Loading complete!");
+        then();
+      }
+    };
+
+    for (const key in this.img_) {
+      const entry = this.img_[key];
+      // Set EventListener before setting src
+      entry.image.addEventListener("load", onLoad);
+      entry.image.addEventListener("load", () => {
+        console.log("Load image: " + entry.src);
+      });
+      entry.image.addEventListener("error", () => {
+        console.log("Load error image: " + entry.src);
+      });
+      entry.image.src = entry.src;
+    }
+  }
+
+  getImage() {
+
+  }
+
+  getAudio() {
+
   }
 }
